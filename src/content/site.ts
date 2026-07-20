@@ -23,6 +23,22 @@ export const siteConfig = {
     "finance outsourcing UK",
     "cloud accounting experts",
   ],
+  /**
+   * Brand logo
+   * ----------
+   * 1. Drop your file into:  public/images/logo.png
+   *    (also works: logo.svg, logo.webp, logo.jpg)
+   * 2. Set `src` below to that path, e.g. "/images/logo.png"
+   * 3. Leave `src: null` to keep the default green icon mark
+   * 4. If your file already includes the word "LongGreen", set hideWordmark: true
+   */
+  logo: {
+    src: "/images/logo.png",
+    alt: "LongGreen",
+    width: 200,
+    height: 48,
+    hideWordmark: true,
+  },
   contact: {
     email: "hello@longgreen.com",
     phone: "+91 00000 00000",
@@ -36,4 +52,4 @@ export const siteConfig = {
     "United Kingdom",
     "India",
   ],
-} as const
+}

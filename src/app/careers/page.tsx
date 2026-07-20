@@ -54,13 +54,19 @@ const CareersPage = () => (
           </ButtonLink>
         </div>
 
-        {/* Staggered photo gallery — grayscale until hover, per mockup */}
+        {/* Staggered photo gallery — full color with hover lift */}
         <div className="mt-20 grid h-100 grid-cols-2 gap-4 md:grid-cols-5">
           {careersHero.gallery.map((photo, index) => (
             <div
               key={photo.src}
+              tabIndex={0}
+              aria-label={photo.alt}
               className={cn(
-                "relative overflow-hidden rounded-xl border border-edge",
+                "group relative overflow-hidden rounded-xl border border-edge",
+                "transition-all duration-300 ease-out",
+                "hover:z-10 hover:scale-[1.03] hover:border-brand/50",
+                "focus-visible:z-10 focus-visible:scale-[1.03] focus-visible:border-brand/50",
+                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-bright",
                 index > 2 && "hidden md:block",
                 index % 2 === 1 && "md:mt-10"
               )}
@@ -70,7 +76,7 @@ const CareersPage = () => (
                 alt={photo.alt}
                 fill
                 sizes="(min-width: 768px) 20vw, 50vw"
-                className="object-cover grayscale transition-all duration-500 hover:grayscale-0"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-focus-visible:scale-105"
               />
             </div>
           ))}
@@ -117,13 +123,23 @@ const CareersPage = () => (
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {careersTeam.members.map((member) => (
             <div key={member.name} className="group">
-              <div className="relative mb-4 aspect-[4/5] overflow-hidden rounded-xl border border-edge bg-surface">
+              <div
+                tabIndex={0}
+                aria-label={member.name}
+                className={cn(
+                  "relative mb-4 aspect-[4/5] overflow-hidden rounded-xl border border-edge bg-surface",
+                  "transition-all duration-300 ease-out",
+                  "hover:border-brand/50 hover:scale-[1.02]",
+                  "focus-visible:border-brand/50 focus-visible:scale-[1.02]",
+                  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-bright"
+                )}
+              >
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-focus-within:scale-105"
                 />
               </div>
               <h3 className="font-display text-lg font-bold text-foreground">

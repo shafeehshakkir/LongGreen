@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { navCta, navItems } from "@/content/navigation"
 import { siteConfig } from "@/content/site"
+import { BrandLogo } from "@/components/ui/BrandLogo"
 import { Icon } from "@/components/ui/Icon"
 import { cn } from "@/lib/utils"
 
@@ -32,15 +33,10 @@ export const Navbar = () => {
         <Link
           href="/"
           aria-label={`${siteConfig.name} — home`}
-          className="flex items-center gap-2.5"
+          className="flex items-center"
           onClick={handleLinkClick}
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded bg-brand">
-            <Icon name="monitoring" className="text-[18px] text-white" filled />
-          </span>
-          <span className="font-display text-lg font-bold tracking-tight text-foreground">
-            Long<span className="text-brand-bright">Green</span>
-          </span>
+          <BrandLogo />
         </Link>
 
         {/* Desktop links */}

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { footerLinks } from "@/content/navigation"
 import { siteConfig } from "@/content/site"
-import { Icon } from "@/components/ui/Icon"
+import { BrandLogo } from "@/components/ui/BrandLogo"
 import { Container } from "@/components/layout/Container"
 
 /**
@@ -16,13 +16,8 @@ export const Footer = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand column */}
           <div className="md:col-span-6">
-            <div className="mb-4 flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded bg-brand">
-                <Icon name="monitoring" className="text-[18px] text-white" filled />
-              </span>
-              <span className="font-display text-lg font-bold tracking-tight text-foreground">
-                {siteConfig.legalName}
-              </span>
+            <div className="mb-4">
+              <BrandLogo wordmark={siteConfig.legalName} />
             </div>
             <p className="max-w-md text-sm leading-relaxed text-muted">
               {siteConfig.description}

@@ -36,6 +36,8 @@ export type ProcessStep = {
 export type BenefitItem = {
   icon: string
   title: string
+  /** Short supporting line under the benefit title */
+  description: string
 }
 
 export type IndustryItem = {

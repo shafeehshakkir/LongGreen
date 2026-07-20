@@ -243,13 +243,41 @@ export const whyOutsource = {
   subheading:
     "Gain access to experienced finance professionals at a fraction of the cost of building an in-house finance team.",
   benefits: [
-    { icon: "payments", title: "Lower Operating Costs" },
-    { icon: "verified", title: "Qualified Chartered Accountants" },
-    { icon: "schedule", title: "Time Zone Advantage" },
-    { icon: "cloud_sync", title: "Cloud Collaboration" },
-    { icon: "trending_up", title: "Scalable Finance Support" },
-    { icon: "speed", title: "Faster Reporting" },
-    { icon: "verified_user", title: "Improved Financial Control" },
+    {
+      icon: "payments",
+      title: "Lower Operating Costs",
+      description: "High-quality finance support without the overhead of a full in-house team.",
+    },
+    {
+      icon: "verified",
+      title: "Qualified Chartered Accountants",
+      description: "Work with CA-led professionals experienced in GCC, UK and Indian standards.",
+    },
+    {
+      icon: "schedule",
+      title: "Time Zone Advantage",
+      description: "Extended coverage that keeps reporting and queries moving across regions.",
+    },
+    {
+      icon: "cloud_sync",
+      title: "Cloud Collaboration",
+      description: "Secure, real-time access to books, dashboards and shared workspaces.",
+    },
+    {
+      icon: "trending_up",
+      title: "Scalable Finance Support",
+      description: "Flex capacity up or down as your business grows or seasonal needs change.",
+    },
+    {
+      icon: "speed",
+      title: "Faster Reporting",
+      description: "Shorter close cycles and clearer management packs delivered on schedule.",
+    },
+    {
+      icon: "verified_user",
+      title: "Improved Financial Control",
+      description: "Stronger controls, reconciliations and oversight across entities.",
+    },
   ] as BenefitItem[],
 }
 
