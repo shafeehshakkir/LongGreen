@@ -38,6 +38,13 @@ export type BenefitItem = {
   title: string
 }
 
+export type IndustryItem = {
+  icon: string
+  title: string
+  /** Shown on hover — how LongGreen supports this industry */
+  description: string
+}
+
 export type Testimonial = {
   quote: string
   name: string

@@ -2,6 +2,7 @@ import type {
   AdvantageItem,
   BenefitItem,
   CtaLink,
+  IndustryItem,
   ProcessStep,
   ServiceItem,
   Testimonial,
@@ -179,16 +180,61 @@ export const industries = {
   heading: "Industries We Serve",
   subheading: "Deep domain knowledge across the sectors that drive regional economies.",
   items: [
-    { icon: "storefront", title: "Retail & Supermarkets" },
-    { icon: "swap_horiz", title: "Trading" },
-    { icon: "precision_manufacturing", title: "Manufacturing" },
-    { icon: "construction", title: "Construction" },
-    { icon: "medical_services", title: "Healthcare" },
-    { icon: "apartment", title: "Facilities Management" },
-    { icon: "work", title: "Professional Services" },
-    { icon: "shopping_cart", title: "E-commerce" },
-    { icon: "school", title: "Education" },
-  ] as BenefitItem[],
+    {
+      icon: "storefront",
+      title: "Retail & Supermarkets",
+      description:
+        "Multi-outlet inventory costing, margin analytics, and daily sales reconciliation so store performance is visible in real time across the GCC and India.",
+    },
+    {
+      icon: "swap_horiz",
+      title: "Trading",
+      description:
+        "Trade finance controls, FX exposure tracking, and working-capital dashboards that keep import–export businesses cash-positive and audit-ready.",
+    },
+    {
+      icon: "precision_manufacturing",
+      title: "Manufacturing",
+      description:
+        "Cost accounting, bill-of-materials alignment, and ERP-backed production reporting that turn plant data into board-ready financial insight.",
+    },
+    {
+      icon: "construction",
+      title: "Construction",
+      description:
+        "Project-wise WIP, retention tracking, and contract revenue recognition so contractors stay compliant and cash-flow aware on every site.",
+    },
+    {
+      icon: "medical_services",
+      title: "Healthcare",
+      description:
+        "Clinic and hospital P&Ls, insurance receivables, and cost-centre reporting designed for regulated healthcare operators.",
+    },
+    {
+      icon: "apartment",
+      title: "Facilities Management",
+      description:
+        "Contract profitability, SLA-linked billing, and multi-entity consolidation for FM firms running sites across the region.",
+    },
+    {
+      icon: "work",
+      title: "Professional Services",
+      description:
+        "Utilisation tracking, project accounting, and partner-level reporting that give practices clear visibility into fees and margins.",
+    },
+    {
+      icon: "shopping_cart",
+      title: "E-commerce",
+      description:
+        "Marketplace reconciliations, payment-gateway settlement, and SKU-level margin analysis built for high-volume digital commerce.",
+    },
+    {
+      icon: "school",
+      title: "Education",
+      description:
+        "Fee cycle automation, grant and endowment tracking, and campus-level budgets for schools, colleges, and training institutions.",
+    },
+  ] as IndustryItem[],
 }
 
 /* ---------- Why Outsource to India ---------- */

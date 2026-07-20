@@ -1,11 +1,14 @@
+"use client"
+
 import Image from "next/image"
+import { motion } from "framer-motion"
 import { hero } from "@/content/home"
 import { ButtonLink } from "@/components/ui/Button"
 import { Container } from "@/components/layout/Container"
 
 /**
  * Home hero: eyebrow, headline, description, dual CTA, boardroom imagery.
- * A radial brand-green glow sits behind the copy for depth without clutter.
+ * Soft entrance motion for a premium first impression.
  */
 export const HeroSection = () => (
   <section className="relative overflow-hidden">
@@ -22,7 +25,12 @@ export const HeroSection = () => (
     <Container className="relative z-10 py-20 md:py-32">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
         {/* Copy */}
-        <div className="flex flex-col gap-6">
+        <motion.div
+          className="flex flex-col gap-6"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-bright">
             {hero.eyebrow}
           </span>
@@ -40,21 +48,25 @@ export const HeroSection = () => (
               {hero.secondaryCta.label}
             </ButtonLink>
           </div>
-        </div>
+        </motion.div>
 
         {/* Visual */}
-        <div className="relative hidden h-[480px] overflow-hidden rounded-lg border border-edge lg:block">
+        <motion.div
+          className="relative hidden h-[480px] overflow-hidden rounded-lg border border-edge lg:block"
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+        >
           <Image
-            src="/images/hero-boardroom.jpg"
+            src="/images/landing page.png"
             alt={hero.imageAlt}
             fill
             priority
             sizes="(min-width: 1024px) 50vw, 0vw"
             className="object-cover"
           />
-          {/* Subtle bottom vignette for text-free premium finish */}
           <div className="absolute inset-0 bg-gradient-to-t from-canvas/60 via-transparent to-transparent" />
-        </div>
+        </motion.div>
       </div>
     </Container>
   </section>
