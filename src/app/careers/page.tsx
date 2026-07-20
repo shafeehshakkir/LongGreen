@@ -152,7 +152,7 @@ const CareersPage = () => (
               {careersBenefits.description}
             </p>
           </div>
-          <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-edge">
+          <div className="relative aspect-[3/2] overflow-hidden rounded-xl border border-edge">
             <Image
               src={careersBenefits.image.src}
               alt={careersBenefits.image.alt}
@@ -192,7 +192,7 @@ const CareersPage = () => (
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {careersTestimonials.items.map((testimonial) => (
-            <Card key={testimonial.role} className="flex h-full flex-col rounded-2xl">
+            <Card key={testimonial.role} className="flex h-full flex-col rounded-xl">
               <p className="mb-8 flex-grow text-base leading-relaxed text-muted">
                 “{testimonial.quote}”
               </p>
@@ -259,7 +259,7 @@ const CareersPage = () => (
     {/* ---------- Closing CTA ---------- */}
     <Section className="pt-0">
       <Container>
-        <div className="flex flex-col items-center justify-between gap-8 rounded-2xl border border-edge bg-surface p-12 md:flex-row md:p-16">
+        <div className="flex flex-col items-center justify-between gap-8 rounded-xl border border-edge bg-surface p-12 md:flex-row md:p-16">
           <div className="text-center md:text-left">
             <h2 className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
               {careersCta.heading}
