@@ -41,7 +41,7 @@ const CaseStudiesPage = () => (
     {/* ---------- Featured flagship case study ---------- */}
     <Section className="pb-0">
       <Container>
-        <div className="group relative h-[520px] overflow-hidden rounded-xl border border-edge md:h-[600px]">
+        <div className="group relative h-[520px] overflow-hidden border border-edge md:h-[600px]">
           <Image
             src={featuredCaseStudy.image}
             alt={featuredCaseStudy.imageAlt}
@@ -75,7 +75,7 @@ const CaseStudiesPage = () => (
 
             <Link
               href={featuredCaseStudy.cta.href}
-              className="group/btn inline-flex h-12 shrink-0 items-center justify-center rounded border border-faint px-8 text-sm font-semibold text-foreground transition-all hover:border-brand hover:bg-elevated"
+              className="group/btn inline-flex h-12 shrink-0 items-center justify-center border border-faint px-8 text-sm font-semibold text-foreground transition-all hover:border-brand hover:bg-elevated"
             >
               {featuredCaseStudy.cta.label}
               <Icon

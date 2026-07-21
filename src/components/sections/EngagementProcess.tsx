@@ -72,7 +72,7 @@ export const EngagementProcess = () => {
                   }
                 }}
                 className={cn(
-                  "mb-1 min-w-0 flex-1 cursor-default rounded-lg px-3 pb-2 pt-0 text-left transition-colors duration-200",
+                  "mb-1 min-w-0 flex-1 cursor-default px-3 pb-2 pt-0 text-left transition-colors duration-200",
                   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-bright",
                   isLast && "mb-0",
                   isActive && "bg-elevated"

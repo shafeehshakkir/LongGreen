@@ -59,7 +59,7 @@ export const CaseStudiesGrid = () => {
           <article
             key={study.title}
             className={cn(
-              "group relative flex min-h-[360px] flex-col justify-between overflow-hidden rounded-xl border border-edge bg-surface p-8 transition-colors duration-300 hover:border-edge-bright hover:bg-elevated",
+              "group relative flex min-h-[360px] flex-col justify-between overflow-hidden border border-edge bg-surface p-8 transition-colors duration-300 hover:border-edge-bright hover:bg-elevated",
               study.wide && "lg:col-span-2"
             )}
           >

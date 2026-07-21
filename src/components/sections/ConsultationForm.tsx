@@ -8,7 +8,7 @@ import { Icon } from "@/components/ui/Icon"
 type SubmissionState = "idle" | "submitted"
 
 const inputClasses =
-  "w-full rounded border border-edge bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-faint transition-colors duration-200 focus:border-brand focus:outline-none"
+  "w-full border border-edge bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-faint transition-colors duration-200 focus:border-brand focus:outline-none"
 
 /**
  * Lead capture form.
@@ -25,7 +25,7 @@ export const ConsultationForm = () => {
 
   if (submissionState === "submitted") {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-lg border border-edge bg-surface p-12 text-center">
+      <div className="flex flex-col items-center gap-4 border border-edge bg-surface p-12 text-center">
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand">
           <Icon name="check" className="text-[28px] text-white" />
         </span>
@@ -43,7 +43,7 @@ export const ConsultationForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-5 rounded-lg border border-edge bg-surface p-8"
+      className="flex flex-col gap-5 border border-edge bg-surface p-8"
       aria-label="Consultation request form"
     >
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -135,7 +135,7 @@ export const ConsultationForm = () => {
 
       <button
         type="submit"
-        className="inline-flex h-12 items-center justify-center rounded bg-brand px-8 text-sm font-semibold tracking-wide text-white transition-colors duration-200 hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-bright"
+        className="inline-flex h-12 items-center justify-center bg-brand px-8 text-sm font-semibold tracking-wide text-white transition-colors duration-200 hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-bright"
       >
         Submit Request
       </button>

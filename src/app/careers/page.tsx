@@ -62,7 +62,7 @@ const CareersPage = () => (
               tabIndex={0}
               aria-label={photo.alt}
               className={cn(
-                "group relative overflow-hidden rounded-xl border border-edge",
+                "group relative overflow-hidden border border-edge",
                 "transition-all duration-300 ease-out",
                 "hover:z-10 hover:scale-[1.03] hover:border-brand/50",
                 "focus-visible:z-10 focus-visible:scale-[1.03] focus-visible:border-brand/50",
@@ -127,7 +127,7 @@ const CareersPage = () => (
                 tabIndex={0}
                 aria-label={member.name}
                 className={cn(
-                  "relative mb-4 aspect-[4/5] overflow-hidden rounded-xl border border-edge bg-surface",
+                  "relative mb-4 aspect-[4/5] overflow-hidden border border-edge bg-surface",
                   "transition-all duration-300 ease-out",
                   "hover:border-brand/50 hover:scale-[1.02]",
                   "focus-visible:border-brand/50 focus-visible:scale-[1.02]",
@@ -168,7 +168,7 @@ const CareersPage = () => (
               {careersBenefits.description}
             </p>
           </div>
-          <div className="relative aspect-[3/2] overflow-hidden rounded-xl border border-edge">
+          <div className="relative aspect-[3/2] overflow-hidden border border-edge">
             <Image
               src={careersBenefits.image.src}
               alt={careersBenefits.image.alt}
@@ -183,7 +183,7 @@ const CareersPage = () => (
           {careersBenefits.items.map((benefit) => (
             <div key={benefit.title}>
               <h3 className="mb-2 flex items-center font-display text-lg font-bold text-foreground">
-                <span className="mr-3 flex h-7 w-7 items-center justify-center rounded bg-brand/20">
+                <span className="mr-3 flex h-7 w-7 items-center justify-center bg-brand/20">
                   <Icon name={benefit.icon} className="text-[16px] text-brand-bright" />
                 </span>
                 {benefit.title}
@@ -208,7 +208,7 @@ const CareersPage = () => (
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {careersTestimonials.items.map((testimonial) => (
-            <Card key={testimonial.role} className="flex h-full flex-col rounded-xl">
+            <Card key={testimonial.role} className="flex h-full flex-col">
               <p className="mb-8 flex-grow text-base leading-relaxed text-muted">
                 “{testimonial.quote}”
               </p>
@@ -243,7 +243,7 @@ const CareersPage = () => (
 
         {openPositions.departments.map((group) => (
           <div key={group.department} className="mb-12">
-            <h3 className="mb-6 rounded-lg bg-surface p-4 font-display text-xl font-bold text-foreground">
+            <h3 className="mb-6 bg-surface p-4 font-display text-xl font-bold text-foreground">
               {group.department}
             </h3>
             <div className="flex flex-col">
@@ -275,7 +275,7 @@ const CareersPage = () => (
     {/* ---------- Closing CTA ---------- */}
     <Section className="pt-0">
       <Container>
-        <div className="flex flex-col items-center justify-between gap-8 rounded-xl border border-edge bg-surface p-12 md:flex-row md:p-16">
+        <div className="flex flex-col items-center justify-between gap-8 border border-edge bg-surface p-12 md:flex-row md:p-16">
           <div className="text-center md:text-left">
             <h2 className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
               {careersCta.heading}

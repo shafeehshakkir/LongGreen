@@ -39,7 +39,7 @@ export const ButtonLink = ({
     href={href}
     aria-label={ariaLabel}
     className={cn(
-      "inline-flex h-12 items-center justify-center gap-2 rounded px-7 text-sm font-semibold tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+      "inline-flex h-12 items-center justify-center gap-2 px-7 text-sm font-semibold tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
       variantClasses[variant],
       className
     )}

@@ -75,7 +75,7 @@ export const GlobalPresenceMap = () => {
       </FadeIn>
 
       <FadeIn delay={0.1}>
-        <div className="relative overflow-hidden rounded-xl border border-edge bg-sunken">
+        <div className="relative overflow-hidden border border-edge bg-sunken">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 opacity-30"
@@ -168,7 +168,7 @@ export const GlobalPresenceMap = () => {
               )
             }
             className={cn(
-              "rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors",
+              "border px-3 py-1.5 text-xs font-semibold transition-colors",
               activeId === location.id
                 ? "border-brand bg-brand/20 text-brand-bright"
                 : "border-edge text-muted hover:border-brand hover:text-brand-bright"
@@ -246,7 +246,7 @@ const LocationMarker = ({
 
     <span
       className={cn(
-        "pointer-events-none absolute z-20 whitespace-nowrap rounded border border-edge bg-canvas/95 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-foreground backdrop-blur-sm transition-opacity",
+        "pointer-events-none absolute z-20 whitespace-nowrap border border-edge bg-canvas/95 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-foreground backdrop-blur-sm transition-opacity",
         labelPositionClass[labelSide],
         isActive ? "opacity-100" : "opacity-85"
       )}
@@ -297,7 +297,7 @@ const DetailItem = ({
   href?: string
 }) => (
   <div className="flex items-start gap-3">
-    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded bg-brand/15">
+    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center bg-brand/15">
       <Icon name={icon} className="text-[16px] text-brand-bright" />
     </span>
     <div>

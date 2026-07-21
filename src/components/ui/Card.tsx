@@ -15,7 +15,7 @@ type CardProps = {
 export const Card = ({ children, className, interactive = true }: CardProps) => (
   <div
     className={cn(
-      "rounded-lg border border-edge bg-surface p-8",
+      "border border-edge bg-surface p-8",
       interactive &&
         "transition-colors duration-300 hover:border-edge-bright hover:bg-elevated",
       className

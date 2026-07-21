@@ -60,7 +60,7 @@ export const Navbar = () => {
         {/* Desktop CTA */}
         <Link
           href={navCta.href}
-          className="hidden h-11 items-center rounded bg-brand px-6 text-xs font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-brand-dark md:inline-flex"
+          className="hidden h-11 items-center bg-brand px-6 text-xs font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-brand-dark md:inline-flex"
         >
           {navCta.label}
         </Link>
@@ -88,7 +88,7 @@ export const Navbar = () => {
                 href={item.href}
                 onClick={handleLinkClick}
                 className={cn(
-                  "rounded px-3 py-3 text-sm font-semibold uppercase tracking-[0.08em] transition-colors",
+                  "px-3 py-3 text-sm font-semibold uppercase tracking-[0.08em] transition-colors",
                   isActiveRoute(item.href)
                     ? "bg-surface text-brand-bright"
                     : "text-muted hover:bg-surface hover:text-brand-bright"
@@ -100,7 +100,7 @@ export const Navbar = () => {
             <Link
               href={navCta.href}
               onClick={handleLinkClick}
-              className="mt-3 inline-flex h-12 items-center justify-center rounded bg-brand px-6 text-xs font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-brand-dark"
+              className="mt-3 inline-flex h-12 items-center justify-center bg-brand px-6 text-xs font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-brand-dark"
             >
               {navCta.label}
             </Link>

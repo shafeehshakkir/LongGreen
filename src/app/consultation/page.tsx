@@ -40,7 +40,7 @@ const ConsultationPage = () => (
 
         {/* Trust sidebar */}
         <aside className="lg:col-span-5">
-          <div className="rounded-lg border border-edge bg-surface p-8">
+          <div className="border border-edge bg-surface p-8">
             <h2 className="border-b border-edge pb-4 font-display text-lg font-semibold text-foreground">
               The LongGreen Advantage
             </h2>
