@@ -31,8 +31,18 @@ const PINS: Record<
 }
 
 /**
- * World presence map — detailed silhouette SVG with geographically
- * precise pins. Hover shows contact details (no zoom).
+ * The GCC pins sit almost on top of each other at this zoom, so they are
+ * collapsed into one cluster marker that opens a pick-list. UK and India
+ * are far enough apart to stay as individual pins.
+ */
+const CLUSTER_IDS = ["saudi", "bahrain", "qatar", "uae", "oman"]
+const CLUSTER_POS = { x: 64.6, y: 36.1 }
+
+/**
+ * World presence map — a dotted (halftone) depiction of the continents,
+ * built by masking a dot pattern with the accurate world silhouette so
+ * the geographically precise pins stay aligned. Hover shows contact
+ * details (no zoom).
  */
 export const GlobalPresenceMap = () => {
   const [activeId, setActiveId] = useState<string | null>(null)
@@ -85,44 +95,65 @@ export const GlobalPresenceMap = () => {
             }}
           />
 
-          {/* Aspect matches world-map.svg (950×620) so pins land on the landmasses */}
-          <div className="relative aspect-[950/620] w-full min-h-[300px] md:min-h-[440px]">
-            {/* Soft grid behind the map */}
+          {/* Aspect trimmed ~15% vertically vs the 950×620 source so the map
+              sits lower without changing its width; pins scale with it. */}
+          <div className="relative aspect-[950/527] w-full min-h-[260px] md:min-h-[360px]">
+            {/* Faint dot lattice for the oceans / backdrop */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 opacity-[0.07]"
+              className="pointer-events-none absolute inset-0 opacity-[0.05]"
               style={{
-                backgroundImage:
-                  "linear-gradient(#7bd8b0 1px, transparent 1px), linear-gradient(90deg, #7bd8b0 1px, transparent 1px)",
-                backgroundSize: "48px 48px",
+                backgroundImage: "radial-gradient(circle, #7bd8b0 1px, transparent 1.4px)",
+                backgroundSize: "14px 14px",
               }}
             />
 
-            <img
-              src="/images/world-map.svg"
-              alt=""
+            {/* Dotted continents: dot pattern masked by the accurate world silhouette */}
+            <div
               aria-hidden="true"
-              draggable={false}
-              className="pointer-events-none absolute inset-0 h-full w-full object-fill"
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage: "radial-gradient(circle, #2f9c74 1.2px, transparent 1.7px)",
+                backgroundSize: "11px 11px",
+                WebkitMaskImage: "url(/images/world-map.svg)",
+                maskImage: "url(/images/world-map.svg)",
+                WebkitMaskSize: "100% 100%",
+                maskSize: "100% 100%",
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+              }}
             />
 
-            {globalPresence.locations.map((location) => {
-              const pin = PINS[location.id]
-              if (!pin) return null
+            {globalPresence.locations
+              .filter((location) => !CLUSTER_IDS.includes(location.id))
+              .map((location) => {
+                const pin = PINS[location.id]
+                if (!pin) return null
 
-              return (
-                <LocationMarker
-                  key={location.id}
-                  location={location}
-                  x={pin.x}
-                  y={pin.y}
-                  labelSide={pin.label}
-                  isActive={activeId === location.id}
-                  onActivate={handleActivate}
-                  onDeactivate={handleDeactivate}
-                />
-              )
-            })}
+                return (
+                  <LocationMarker
+                    key={location.id}
+                    location={location}
+                    x={pin.x}
+                    y={pin.y}
+                    labelSide={pin.label}
+                    isActive={activeId === location.id}
+                    onActivate={handleActivate}
+                    onDeactivate={handleDeactivate}
+                  />
+                )
+              })}
+
+            <ClusterMarker
+              x={CLUSTER_POS.x}
+              y={CLUSTER_POS.y}
+              locations={globalPresence.locations.filter((location) =>
+                CLUSTER_IDS.includes(location.id)
+              )}
+              activeId={activeId}
+              onActivate={handleActivate}
+              onDeactivate={handleDeactivate}
+            />
           </div>
 
           <AnimatePresence mode="wait">
@@ -255,6 +286,118 @@ const LocationMarker = ({
     </span>
   </button>
 )
+
+type ClusterProps = {
+  x: number
+  y: number
+  locations: ServiceLocation[]
+  activeId: string | null
+  onActivate: (id: string) => void
+  onDeactivate: () => void
+}
+
+/**
+ * Collapsed GCC marker. Hover/focus/click opens a pick-list so the
+ * overlapping Gulf countries can be selected without fighting the cursor.
+ */
+const ClusterMarker = ({ x, y, locations, activeId, onActivate, onDeactivate }: ClusterProps) => {
+  const [open, setOpen] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const anyActive = locations.some((location) => location.id === activeId)
+
+  const openNow = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current)
+      timerRef.current = null
+    }
+    setOpen(true)
+  }
+
+  /** Delay close so the cursor can travel from pin → pick-list */
+  const closeSoon = () => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => {
+      setOpen(false)
+      onDeactivate()
+      timerRef.current = null
+    }, 160)
+  }
+
+  return (
+    <div
+      className="absolute z-30"
+      style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
+      onMouseEnter={openNow}
+      onMouseLeave={closeSoon}
+    >
+      <button
+        type="button"
+        aria-label={`Gulf region — ${locations.length} offices. Open list to choose a country.`}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        onClick={() => setOpen((current) => !current)}
+        onFocus={openNow}
+        onBlur={closeSoon}
+        className="group relative flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-bright"
+      >
+        <span
+          aria-hidden="true"
+          className={cn(
+            "pointer-events-none absolute h-5 w-5 rounded-full bg-brand-bright/40",
+            "animate-[map-pulse_2.2s_ease-out_infinite]"
+          )}
+        />
+        <span
+          className={cn(
+            "relative flex h-7 w-7 items-center justify-center rounded-full border border-brand-bright bg-brand font-display text-[11px] font-bold text-white",
+            "shadow-[0_0_0_2px_rgba(12,12,12,0.9),0_0_10px_1px_rgba(0,119,85,0.7)] transition-transform duration-200",
+            (open || anyActive) && "scale-110"
+          )}
+        >
+          {locations.length}
+        </span>
+        <span
+          className={cn(
+            "pointer-events-none absolute left-1/2 top-[calc(100%+8px)] -translate-x-1/2 whitespace-nowrap border border-edge bg-canvas/95 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-foreground backdrop-blur-sm transition-opacity",
+            open ? "opacity-0" : "opacity-90"
+          )}
+        >
+          GCC
+        </span>
+      </button>
+
+      {open ? (
+        <div
+          role="menu"
+          className="absolute left-1/2 top-[calc(100%+10px)] z-40 w-44 -translate-x-1/2 border border-edge bg-surface/95 p-1 shadow-[0_20px_60px_-25px_rgba(0,0,0,0.9)] backdrop-blur-sm"
+        >
+          <p className="px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-faint">
+            Gulf offices
+          </p>
+          {locations.map((location) => (
+            <button
+              key={location.id}
+              type="button"
+              role="menuitem"
+              onMouseEnter={() => onActivate(location.id)}
+              onFocus={() => onActivate(location.id)}
+              onClick={() => onActivate(location.id)}
+              className={cn(
+                "flex w-full items-baseline justify-between gap-2 px-2 py-1.5 text-left transition-colors",
+                activeId === location.id
+                  ? "bg-brand/20 text-brand-bright"
+                  : "text-muted hover:bg-elevated hover:text-foreground"
+              )}
+            >
+              <span className="text-xs font-semibold">{location.name}</span>
+              <span className="text-[10px] text-faint">{location.city}</span>
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  )
+}
 
 const LocationDetails = ({ location }: { location: ServiceLocation }) => (
   <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">

@@ -151,6 +151,7 @@ export const whyChoose = {
 /* ---------- How We Work ---------- */
 export const howWeWork = {
   heading: "How We Work",
+  intro: "A finance partnership built to adapt to your business — not the other way around.",
   steps: [
     {
       step: 1,
