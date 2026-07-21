@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/sections/HeroSection"
 import { GlobalReachBanner } from "@/components/sections/GlobalReachBanner"
 import { ServicesGrid } from "@/components/sections/ServicesGrid"
 import { AdvantageSection } from "@/components/sections/AdvantageSection"
+import { EngagementProcess } from "@/components/sections/EngagementProcess"
 import { IndustriesSection } from "@/components/sections/IndustriesSection"
 import { OutsourceSection } from "@/components/sections/OutsourceSection"
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection"
@@ -29,6 +30,7 @@ const HomePage = () => (
     <GlobalReachBanner />
     <ServicesGrid />
     <AdvantageSection />
+    <EngagementProcess />
     <IndustriesSection />
     <OutsourceSection />
     <TestimonialsSection />

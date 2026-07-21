@@ -1,109 +1,55 @@
-"use client"
-
-import { useState } from "react"
 import { howWeWork } from "@/content/home"
-import { Card } from "@/components/ui/Card"
-import { cn } from "@/lib/utils"
+import { Icon } from "@/components/ui/Icon"
+import { Container } from "@/components/layout/Container"
+import { Section } from "@/components/layout/Section"
 
 /**
- * Engagement process — expands only while a step is hovered / focused.
- * Collapses again when the pointer leaves. Card height follows content.
+ * "How We Work" — a horizontal process row. Each step shows an icon,
+ * title and description, connected left-to-right by a dashed rail.
  */
-export const EngagementProcess = () => {
-  const [activeStep, setActiveStep] = useState<number | null>(null)
-  const steps = howWeWork.steps
-  const lastIndex = steps.length - 1
+export const EngagementProcess = () => (
+  <Section>
+    <Container>
+      <div className="mb-12 max-w-2xl">
+        <h2 className="mb-3 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          {howWeWork.heading}
+        </h2>
+        <p className="text-base text-muted">
+          A clear, four-step engagement that turns your finance function into a growth engine.
+        </p>
+      </div>
 
-  const handleLeave = () => setActiveStep(null)
-
-  return (
-    <Card interactive={false}>
-      <h3 className="mb-6 font-display text-xl font-semibold text-foreground">
-        {howWeWork.heading}
-      </h3>
-
-      <ol className="flex flex-col" onMouseLeave={handleLeave}>
-        {steps.map((step, index) => {
-          const isActive = activeStep === step.step
-          const isComplete = activeStep !== null && step.step < activeStep
-          const isLast = index === lastIndex
+      <ol className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {howWeWork.steps.map((step, index) => {
+          const isLast = index === howWeWork.steps.length - 1
 
           return (
-            <li
-              key={step.step}
-              className="flex gap-4"
-              onMouseEnter={() => setActiveStep(step.step)}
-            >
-              {/* Number + connector rail */}
-              <div className="flex w-8 shrink-0 flex-col items-center">
+            <li key={step.step} className="group relative">
+              {/* Connector rail to the next step (desktop only) */}
+              {!isLast && (
                 <span
-                  className={cn(
-                    "z-10 flex h-8 w-8 items-center justify-center rounded-full border font-display text-sm font-bold transition-colors duration-200",
-                    isActive
-                      ? "border-brand bg-brand text-white"
-                      : isComplete
-                        ? "border-brand bg-brand/25 text-brand-bright"
-                        : "border-brand/60 bg-canvas text-brand-bright"
-                  )}
-                >
-                  {step.step}
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-16 right-0 top-7 hidden h-px -translate-y-1/2 bg-gradient-to-r from-brand/50 to-transparent lg:block"
+                />
+              )}
+
+              <div className="flex items-center gap-4">
+                <span className="relative flex h-14 w-14 shrink-0 items-center justify-center border border-brand/40 bg-surface transition-colors duration-300 group-hover:border-brand group-hover:bg-brand/10">
+                  <Icon name={step.icon} className="text-[26px] text-brand-bright" filled />
+                  <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-brand font-display text-xs font-bold text-white">
+                    {step.step}
+                  </span>
                 </span>
-
-                {!isLast && (
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      "w-px flex-1 min-h-5 transition-colors duration-200",
-                      isComplete || isActive ? "bg-brand" : "bg-edge"
-                    )}
-                  />
-                )}
               </div>
 
-              {/* Step content — expands on hover only */}
-              <div
-                tabIndex={0}
-                role="button"
-                aria-expanded={isActive}
-                onFocus={() => setActiveStep(step.step)}
-                onBlur={(event) => {
-                  if (!event.currentTarget.parentElement?.contains(event.relatedTarget as Node)) {
-                    setActiveStep(null)
-                  }
-                }}
-                className={cn(
-                  "mb-1 min-w-0 flex-1 cursor-default px-3 pb-2 pt-0 text-left transition-colors duration-200",
-                  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-bright",
-                  isLast && "mb-0",
-                  isActive && "bg-elevated"
-                )}
-              >
-                <h4
-                  className={cn(
-                    "font-display text-base font-semibold leading-8 transition-colors duration-200",
-                    isActive ? "text-foreground" : "text-muted"
-                  )}
-                >
-                  {step.title}
-                </h4>
-
-                <div
-                  className={cn(
-                    "grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out",
-                    isActive
-                      ? "mt-1 grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  )}
-                >
-                  <p className="overflow-hidden text-sm leading-relaxed text-muted">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
+              <h3 className="mt-5 font-display text-lg font-semibold text-foreground">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
             </li>
           )
         })}
       </ol>
-    </Card>
-  )
-}
+    </Container>
+  </Section>
+)

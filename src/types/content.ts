@@ -29,6 +29,7 @@ export type AdvantageItem = {
 
 export type ProcessStep = {
   step: number
+  icon: string
   title: string
   description: string
 }

@@ -150,25 +150,29 @@ export const whyChoose = {
 
 /* ---------- How We Work ---------- */
 export const howWeWork = {
-  heading: "Our Engagement Process",
+  heading: "How We Work",
   steps: [
     {
       step: 1,
+      icon: "manage_search",
       title: "Understand Your Business",
       description: "We start with a deep discovery of your operations, systems, and goals.",
     },
     {
       step: 2,
+      icon: "architecture",
       title: "Design the Right Financial Solution",
       description: "A tailored finance function blueprint built around your growth stage.",
     },
     {
       step: 3,
+      icon: "settings_suggest",
       title: "Implement Systems & Processes",
       description: "We deploy the tools, controls, and workflows that power precision.",
     },
     {
       step: 4,
+      icon: "insights",
       title: "Deliver Ongoing Financial Insights",
       description: "Continuous reporting, dashboards, and advisory that compound value.",
     },
