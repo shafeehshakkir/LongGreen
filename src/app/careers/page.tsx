@@ -62,7 +62,7 @@ const CareersPage = () => (
               tabIndex={0}
               aria-label={photo.alt}
               className={cn(
-                "group relative overflow-hidden border border-edge",
+                "group relative overflow-hidden rounded-2xl border border-edge",
                 "transition-all duration-300 ease-out",
                 "hover:z-10 hover:scale-[1.03] hover:border-brand/50",
                 "focus-visible:z-10 focus-visible:scale-[1.03] focus-visible:border-brand/50",

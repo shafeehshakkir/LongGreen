@@ -78,7 +78,10 @@ body {
   }
 }
 
-/* "How We Work" pipeline — line draw-in + flowing current */
+/* "How We Work" pipeline — line draw-in + flowing current.
+   Animations stay idle until the section scrolls into view and the
+   container receives `.hww-animate`. Per-element delay/duration are set
+   inline so the rail + motifs draw sequentially from step 1 → 4. */
 @keyframes hww-draw {
   to {
     stroke-dashoffset: 0;
@@ -96,12 +99,25 @@ body {
 .hww-draw {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: hww-draw 1.6s ease-out forwards;
 }
 
 .hww-flow {
   stroke-dasharray: 3 9;
-  animation: hww-flow 5s linear infinite;
+  stroke-dashoffset: 0;
+}
+
+.hww-animate .hww-draw {
+  animation-name: hww-draw;
+  animation-duration: 1.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.hww-animate .hww-flow {
+  animation-name: hww-flow;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

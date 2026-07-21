@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { servicesCta, servicesHero } from "@/content/services"
 import { ButtonLink } from "@/components/ui/Button"
 import { FadeIn } from "@/components/ui/FadeIn"
@@ -34,13 +35,25 @@ const ServicesPage = () => (
   <>
     {/* ---------- Hero ---------- */}
     <Section className="relative overflow-hidden border-b border-edge">
+      {/* Background hero image — drop your file at public/images/services-hero.jpg */}
+      <Image
+        src="/images/pawel-czerwinski-IbHFznCKnqA-unsplash.jpg"
+        alt=""
+        fill
+        priority
+        quality={100}
+        sizes="100vw"
+        className="object-cover object-center"
+        aria-hidden="true"
+      />
+      {/* Dark scrim for text legibility (stronger on the left where copy sits) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-15"
-        style={{
-          backgroundImage:
-            "radial-gradient(ellipse 60% 50% at 15% 30%, #007755 0%, transparent 65%)",
-        }}
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-canvas via-canvas/80 to-canvas/40"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-canvas via-transparent to-transparent"
       />
       <Container className="relative z-10">
         <FadeIn>
